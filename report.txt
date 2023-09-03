@@ -1,0 +1,22 @@
+  <?php
+  if(isset($_GET['fdate']) && isset($_GET['tdate']))
+  {
+   $from_date = $_GET['fdate'];
+   $to_date = $_GET['tdate'];
+   
+   $con =mysqli_connect("localhost","root","","gymdb");
+   $query = "SELECT * FROM tbluser WHERE create_date BETWEEN '$from_date' AND '$to_date' ";
+   $query_run = mysqli_query($con, $query);
+   if(mysqli_num_rows($query_run) > 0)
+   {
+     foreach($query_run as $row)
+     {
+       echo $row['fname'];
+     }
+   }
+   else {
+   echo "No record found";
+   }
+  }
+  
+  ?>
